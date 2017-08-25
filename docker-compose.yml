@@ -1,0 +1,25 @@
+version: '2'
+services:
+
+    instance1-code-bootcamp-term-docker:
+      image: docker:1.8-dind
+      container_name: instance1-code-bootcamp-term-docker
+      privileged: true
+
+    instance1-code-bootcamp-term:
+      image: code-bootcamp-term
+      container_name: instance1-code-bootcamp-term
+      links:
+        - instance1-code-bootcamp-term-docker:docker
+      depends_on:
+        - instance1-code-bootcamp-term-docker
+      ports:
+        - "8091:8080"
+
+    instance1-code-bootcamp-web:
+      image: code-bootcamp-web
+      container_name: instance1-code-bootcamp-web
+      ports:
+        - "8090:80"
+      environment:
+        - SERVER_URL=localhost:8091

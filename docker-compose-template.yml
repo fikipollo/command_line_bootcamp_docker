@@ -1,0 +1,34 @@
+############################################################
+# Launcher for Command-line bootcamp container for the eBioKit
+# This is a template, the following values must be replaced:
+#   - $${INSTANCE_NAME}, name for the instance
+#   - $${APP_1_PORT_1}, port number for terminal provider instance
+#   - $${APP_2_PORT_1}, port number for the client website instance
+#   - $${SERVER_URL}, the IP address (+ port) or the URL to codebootcamp-term instance 
+############################################################
+
+version: '2'
+services:
+
+    $${INSTANCE_NAME}-codebootcamp-docker:
+      image: docker:1.8-dind
+      container_name: $${INSTANCE_NAME}-codebootcamp-docker
+      privileged: true
+
+    $${INSTANCE_NAME}-codebootcamp-term:
+      image: code-bootcamp-term
+      container_name: $${INSTANCE_NAME}-codebootcamp-term
+      links:
+        - $${INSTANCE_NAME}-codebootcamp-docker:docker
+      depends_on:
+        - $${INSTANCE_NAME}-codebootcamp-docker
+      ports:
+        - "$${APP_1_PORT_1}:8080"
+
+    $${INSTANCE_NAME}-codebootcamp-web:
+      image: code-bootcamp-web
+      container_name: $${INSTANCE_NAME}-codebootcamp-web
+      ports:
+        - "$${APP_2_PORT_1}:80"
+      environment:
+        - SERVER_URL=$${SERVER_URL}
