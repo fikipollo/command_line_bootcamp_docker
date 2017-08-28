@@ -1,25 +1,25 @@
 version: '2'
 services:
 
-    testbootcamp-docker:
+    instance1-command-line-bootcamp-docker:
       image: docker:1.8-dind
-      container_name: testbootcamp-docker
+      container_name: instance1-command-line-bootcamp-docker
       privileged: true
 
-    testbootcamp-term:
+    instance1-command-line-bootcamp-term:
       image: fikipollo/command-line-bootcamp:term
-      container_name: testbootcamp-term
+      container_name: instance1-command-line-bootcamp-term
       links:
-        - testbootcamp-docker:docker
+        - instance1-command-line-bootcamp-docker:docker
       depends_on:
-        - testbootcamp-docker
+        - instance1-command-line-bootcamp-docker
       ports:
         - "8093:8080"
 
-    testbootcamp-web:
+    instance1-command-line-bootcamp-web:
       image: fikipollo/command-line-bootcamp:web
-      container_name: testbootcamp-web
+      container_name: instance1-command-line-bootcamp-web
       ports:
         - "8094:80"
       environment:
-        - SERVER_URL="localhost:8093"
+        - SERVER_URL=localhost:8093
