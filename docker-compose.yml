@@ -7,7 +7,7 @@ services:
       privileged: true
 
     testbootcamp-term:
-      image: fikipollo/command-line-bootcamp-term
+      image: fikipollo/command-line-bootcamp:term
       container_name: testbootcamp-term
       links:
         - testbootcamp-docker:docker
@@ -17,7 +17,7 @@ services:
         - "8093:8080"
 
     testbootcamp-web:
-      image: fikipollo/command-line-bootcamp-web
+      image: fikipollo/command-line-bootcamp:web
       container_name: testbootcamp-web
       ports:
         - "8094:80"
