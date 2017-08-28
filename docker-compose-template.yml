@@ -2,33 +2,33 @@
 # Launcher for Command-line bootcamp container for the eBioKit
 # This is a template, the following values must be replaced:
 #   - $${INSTANCE_NAME}, name for the instance
-#   - $${APP_1_PORT_1}, port number for terminal provider instance
-#   - $${APP_2_PORT_1}, port number for the client website instance
-#   - $${SERVER_URL}, the IP address (+ port) or the URL to codebootcamp-term instance 
+#   - $${APP_PORT_1}, port number for terminal provider instance
+#   - $${APP_PORT_2}, port number for the client website instance
+#   - $${SERVER_URL}, the IP address (+ port) or the URL to command-line-bootcamp-term instance
 ############################################################
 
 version: '2'
 services:
 
-    $${INSTANCE_NAME}-codebootcamp-docker:
+    $${INSTANCE_NAME}-command-line-bootcamp-docker:
       image: docker:1.8-dind
-      container_name: $${INSTANCE_NAME}-codebootcamp-docker
+      container_name: $${INSTANCE_NAME}-command-line-bootcamp-docker
       privileged: true
 
-    $${INSTANCE_NAME}-codebootcamp-term:
-      image: code-bootcamp-term
-      container_name: $${INSTANCE_NAME}-codebootcamp-term
+    $${INSTANCE_NAME}-command-line-bootcamp-term:
+      image: fikipollo/command-line-bootcamp-term
+      container_name: $${INSTANCE_NAME}-command-line-bootcamp-term
       links:
-        - $${INSTANCE_NAME}-codebootcamp-docker:docker
+        - $${INSTANCE_NAME}-command-line-bootcamp-docker:docker
       depends_on:
-        - $${INSTANCE_NAME}-codebootcamp-docker
+        - $${INSTANCE_NAME}-command-line-bootcamp-docker
       ports:
-        - "$${APP_1_PORT_1}:8080"
+        - "$${APP_PORT_1}:8080"
 
-    $${INSTANCE_NAME}-codebootcamp-web:
-      image: code-bootcamp-web
-      container_name: $${INSTANCE_NAME}-codebootcamp-web
+    $${INSTANCE_NAME}-command-line-bootcamp-web:
+      image: fikipollo/command-line-bootcamp-web
+      container_name: $${INSTANCE_NAME}-command-line-bootcamp-web
       ports:
-        - "$${APP_2_PORT_1}:80"
+        - "$${APP_PORT_2}:80"
       environment:
         - SERVER_URL=$${SERVER_URL}

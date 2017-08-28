@@ -11,17 +11,21 @@ MAINTAINER Rafael Hernandez <https://github.com/fikipollo>
 
 ################## BEGIN INSTALLATION ######################
 
-RUN apt-get update && apt-get install -y build-essential g++ curl python vim npm git && apt-get clean
+RUN apt-get update \
+    && apt-get install -y build-essential g++ curl python git \
+    && curl -sL https://deb.nodesource.com/setup_7.x | bash --  \
+    && apt-get install nodejs  \
+    && apt-get clean
 
-RUN ln -s /usr/bin/nodejs /usr/bin/node \
-    && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash \
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash \
     && bash -l -c "source ~/.bashrc" \
-    && bash -l -c "nvm install 0.12" \
-    && bash -l -c "nvm use 0.12" \
     && cd /usr/local/ \
     && git clone https://github.com/Blahah/command_line_bootcamp.git \
     && cd command_line_bootcamp \
+    && bash -l -c "nvm install 0.12" \
+    && bash -l -c "nvm use 0.12" \
     && npm install \
+    && npm run deploy \
     && echo "46.101.11.144:8080" > .server_url
 
 COPY configs/entrypoint.sh /usr/bin/entrypoint.sh

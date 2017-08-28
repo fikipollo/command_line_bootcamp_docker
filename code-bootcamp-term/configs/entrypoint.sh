@@ -22,9 +22,12 @@ sleep 10
 
 #docker images | grep command_line_bootcamp
 cd /usr/local/command_line_bootcamp
-docker build -t "command_line_bootcamp" .
 
 
-docker-browser-server command_line_bootcamp -p 8080
+docker pull fikipollo/code-bootcamp-internal
 
+if [[ "$?" == "1" ]]; then
+  docker build -t "fikipollo/code-bootcamp-internal" .
+fi
 
+docker-browser-server fikipollo/code-bootcamp-internal -p 8080
