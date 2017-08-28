@@ -9,7 +9,7 @@ FROM ubuntu:14.04
 # create a non-root user
 # copy the nice dotfiles that dockerfile/ubuntu gives us:
 # setup the user directory
-RUN apt-get update && apt-get install -y curl git python build-essential  && apt-get clean \
+RUN apt-get update && apt-get install -y curl git python build-essential nano && apt-get clean \
     && useradd -ms /bin/bash learner  \
     && cd && cp -R .bashrc .profile /home/learner \
     && chown -R learner:learner /home/learner
