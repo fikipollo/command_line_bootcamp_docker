@@ -21,9 +21,8 @@ export DOCKER_HOST='tcp://docker:2375'
 sleep 10
 
 #docker images | grep command_line_bootcamp
-cd /usr/local/command_line_bootcamp 
+cd /usr/local/command_line_bootcamp
 
-docker pull fikipollo/command-line-bootcamp:internal
-# || docker build -t "fikipollo/command-line-bootcamp:internal" .
+docker pull fikipollo/command-line-bootcamp:internal || docker build -t "fikipollo/command-line-bootcamp:internal" .
 
 docker-browser-server fikipollo/command-line-bootcamp:internal -p 8080
