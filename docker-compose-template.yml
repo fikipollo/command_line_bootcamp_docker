@@ -2,8 +2,8 @@
 # Launcher for Command-line bootcamp container for the eBioKit
 # This is a template, the following values must be replaced:
 #   - $${INSTANCE_NAME}, name for the instance
-#   - $${APP_PORT_1}, port number for terminal provider instance
-#   - $${APP_PORT_2}, port number for the client website instance
+#   - $${INSTANCE_PORT_1}, port number for terminal provider instance
+#   - $${INSTANCE_PORT_2}, port number for the client website instance
 #   - $${SERVER_URL}, the IP address (+ port) or the URL to command-line-bootcamp-term instance
 ############################################################
 
@@ -23,12 +23,12 @@ services:
       depends_on:
         - $${INSTANCE_NAME}-command-line-bootcamp-docker
       ports:
-        - "$${APP_PORT_1}:8080"
+        - "$${INSTANCE_PORT_1}:8080"
 
     $${INSTANCE_NAME}-command-line-bootcamp-web:
       image: fikipollo/command-line-bootcamp:web
       container_name: $${INSTANCE_NAME}-command-line-bootcamp-web
       ports:
-        - "$${APP_PORT_2}:80"
+        - "$${INSTANCE_PORT_2}:80"
       environment:
         - SERVER_URL=$${SERVER_URL}
