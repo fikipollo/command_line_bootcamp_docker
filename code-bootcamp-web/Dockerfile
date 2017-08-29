@@ -34,7 +34,9 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 RUN rm -r /usr/local/apache2/htdocs \
     && ln -s /usr/local/command_line_bootcamp /usr/local/apache2/htdocs \
-    && chown -R www-data:www-data /usr/local/command_line_bootcamp
+    && chown -R www-data:www-data /usr/local/command_line_bootcamp \
+    && sed '19i if(opts.server[0] === "/"){ opts.server = location.host + opts.server; }' /usr/local/command_line_bootcamp/bundle.js
+
 ##################### INSTALLATION END #####################
 
 # Expose port 80 (apache)
