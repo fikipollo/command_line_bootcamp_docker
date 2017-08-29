@@ -14,7 +14,7 @@ if [[ "$SERVER_URL" != "" ]]; then
 		ln -s $PWD/node_modules/ $PWD/node_modules/edit/
 		npm run build
 		npm run fixcolor
-		sed '19i if(opts.server[0] === "/"){ opts.server = location.host + opts.server; }' bundle.js
+		sed -i '19i if(opts.server[0] === "/"){ opts.server = location.host + opts.server; }' bundle.js
 	fi
 fi
 
