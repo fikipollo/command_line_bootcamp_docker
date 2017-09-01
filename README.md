@@ -33,3 +33,6 @@ sudo docker-compose up
 Using the *-d* flag you can launch the containers in background.
 
 In case you do not have the Container stored locally, docker will download it for you.
+
+# Version log
+  - v0.9 August 2017: First version of the docker.

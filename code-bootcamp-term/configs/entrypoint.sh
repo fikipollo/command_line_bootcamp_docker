@@ -23,6 +23,6 @@ sleep 10
 #docker images | grep command_line_bootcamp
 cd /usr/local/command_line_bootcamp
 
-docker pull fikipollo/command-line-bootcamp:internal || docker build -t "fikipollo/command-line-bootcamp:internal" .
+docker pull fikipollo/cmd-bootcamp-internal || docker build -t "fikipollo/cmd-bootcamp-internal" .
 
-docker-browser-server fikipollo/command-line-bootcamp:internal -p 8080
+docker-browser-server fikipollo/cmd-bootcamp-internal -p 8080
